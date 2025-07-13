@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: Qwerty12
+      POSTGRES_DB: ai_chat_subscription
+    ports:
+      - '5434:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U admin -d ai_chat_subscription']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runner
+    image: ggi-backend:latest 
+    environment:
+      DATABASE_URL: postgres://admin:Qwerty12@db:5432/ai_chat_subscription
+      TEST_DATABASE_URL: postgres://admin:Qwerty12@db:5432/ai_chat_subscription_test
+      PORT: 3000
+    ports:
+      - '3001:3000'
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: >
+      sh -c "
+        npx ts-node src/init-db.ts &&
+        npx ts-node src/scripts/seed-data.ts &&
+        node dist/server.js
+      "
+    working_dir: /app
+
+volumes:
+  postgres_data:
