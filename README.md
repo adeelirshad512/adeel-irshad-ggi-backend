@@ -82,12 +82,3 @@ docker-compose down -v
 ```bash
 docker-compose logs
 ```
-
-```
-
-Let me know if you'd like to include:
-
-- `.env.example` documentation  
-- Swagger/OpenAPI docs  
-- Setup guide for local development without Docker
-```
