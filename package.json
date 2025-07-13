@@ -3,15 +3,15 @@
   "version": "1.0.0",
   "main": "dist/server.js",
   "scripts": {
-    "start": "node dist/server.js",
-    "build": "tsc",
-    "dev": "ts-node-dev src/server.ts",
-    "lint": "eslint 'src/**/*.{ts,tsx}' --fix",
-    "format": "prettier --write 'src/**/*.{ts,tsx}'",
-    "seed-data": "ts-node src/scripts/seed-data.ts",
-    "delete-data": "ts-node src/scripts/delete-data.ts",
-    "test": "jest --detectOpenHandles",
-    "test:watch": "jest --watch"
+      "start": "node dist/server.js",
+      "build": "tsc",
+      "dev": "ts-node-dev src/server.ts",
+      "lint": "eslint 'src/**/*.{ts,tsx}' --fix",
+      "format": "prettier --write 'src/**/*.{ts,tsx}'",
+      "seed-data": "ts-node src/scripts/seed-data.ts",
+      "delete-data": "ts-node src/scripts/delete-data.ts",
+      "test": "jest --detectOpenHandles",
+      "test:watch": "jest --watch"
   },
   "dependencies": {
     "dotenv": "^16.3.1",

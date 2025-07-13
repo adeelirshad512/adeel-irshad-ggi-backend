@@ -9,6 +9,7 @@ const config: Config = {
     '^.+\\.ts$': 'ts-jest',
   },
   roots: ['<rootDir>/src', '<rootDir>/tests'],
+    maxWorkers: 1, 
 };
 
 export default config;
